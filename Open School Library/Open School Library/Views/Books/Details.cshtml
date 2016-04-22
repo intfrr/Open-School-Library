@@ -1,0 +1,98 @@
+﻿@model Open_School_Library.Models.Books
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanedTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanedTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckedOutWhen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckedOutWhen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueBackWhen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueBackWhen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnedWhen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnedWhen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dewey1.DeweyCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dewey1.DeweyCategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genres.Genre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
