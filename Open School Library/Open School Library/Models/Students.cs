@@ -14,14 +14,21 @@ namespace Open_School_Library.Models
     
     public partial class Students
     {
-        public int id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Grade { get; set; }
-        public Nullable<decimal> Fines { get; set; }
-        public int StudentID { get; set; }
-        public string StudentEmail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Students()
+        {
+            this.book_loans = new HashSet<book_loans>();
+        }
     
-        public virtual Books Books { get; set; }
+        public int id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public int grade { get; set; }
+        public Nullable<decimal> fines { get; set; }
+        public Nullable<int> issued_id { get; set; }
+        public string student_email { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<book_loans> book_loans { get; set; }
     }
 }

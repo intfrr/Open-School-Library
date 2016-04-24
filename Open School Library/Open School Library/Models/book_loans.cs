@@ -12,18 +12,16 @@ namespace Open_School_Library.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Genres
+    public partial class book_loans
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genres()
-        {
-            this.Books = new HashSet<Books>();
-        }
-    
         public int id { get; set; }
-        public string genre { get; set; }
+        public int student_id { get; set; }
+        public int book_id { get; set; }
+        public System.DateTime checked_out_when { get; set; }
+        public System.DateTime due_when { get; set; }
+        public Nullable<System.DateTime> returned_when { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Books> Books { get; set; }
+        public virtual Books Books_Relation { get; set; }
+        public virtual Students Students_Relation { get; set; }
     }
 }

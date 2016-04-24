@@ -9,37 +9,33 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Books", FormMethod.Get))
+{
+    <p>
+        Title: @Html.TextBox("SearchTerm")
+        <input type="submit" value="Search" />
+    </p>
+}
+ 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subtitle)
+            Author
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author)
+            ISBN
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ISBN)
+            Student Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LoanedTo)
+            Category
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CheckedOutWhen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DueBackWhen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReturnedWhen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dewey1.DeweyCategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genres.Genre)
+            Genre
         </th>
         <th></th>
     </tr>
@@ -47,34 +43,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Subtitle)
+            @Html.DisplayFor(modelItem => item.author)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Author)
+            @Html.DisplayFor(modelItem => item.isbn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
+            @Html.DisplayFor(modelItem => item.student_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LoanedTo)
+            @Html.DisplayFor(modelItem => item.Dewey_Relation.dewey_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CheckedOutWhen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DueBackWhen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnedWhen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dewey1.DeweyCategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genres.Genre)
+            @Html.DisplayFor(modelItem => item.Genres_Relation.genre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

@@ -199,15 +199,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
-    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BookListViewModel.cs" />
     <Compile Include="Models\Books.cs">
+      <DependentUpon>OSLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\book_loans.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dewey.cs">
@@ -325,21 +327,6 @@
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Genres\Create.cshtml" />
-    <Content Include="Views\Genres\Delete.cshtml" />
-    <Content Include="Views\Genres\Details.cshtml" />
-    <Content Include="Views\Genres\Edit.cshtml" />
-    <Content Include="Views\Genres\Index.cshtml" />
-    <Content Include="Views\Deweys\Create.cshtml" />
-    <Content Include="Views\Deweys\Delete.cshtml" />
-    <Content Include="Views\Deweys\Details.cshtml" />
-    <Content Include="Views\Deweys\Edit.cshtml" />
-    <Content Include="Views\Deweys\Index.cshtml" />
-    <Content Include="Views\Students\Create.cshtml" />
-    <Content Include="Views\Students\Delete.cshtml" />
-    <Content Include="Views\Students\Details.cshtml" />
-    <Content Include="Views\Students\Edit.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

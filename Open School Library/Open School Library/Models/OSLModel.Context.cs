@@ -25,6 +25,7 @@ namespace Open_School_Library.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<book_loans> book_loans { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Dewey> Dewey { get; set; }
         public virtual DbSet<Genres> Genres { get; set; }

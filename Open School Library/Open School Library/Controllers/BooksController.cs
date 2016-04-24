@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,25 @@ namespace Open_School_Library.Controllers
         private OpenSchoolLibraryDBEntities db = new OpenSchoolLibraryDBEntities();
 
         // GET: Books
-        public async Task<ActionResult> Index()
+        public ActionResult Index(string searchTerm)
         {
-            var books = db.Books.Include(b => b.Dewey1).Include(b => b.Genres);
-            return View(await books.ToListAsync());
+            var books = db.Books.Include(b => b.Dewey_Relation).Include(b => b.Genres_Relation);
+
+            if (!String.IsNullOrEmpty(searchTerm)) 
+            { 
+                books = books.Where(s => s.title.Contains(searchTerm)); 
+            }
+            return View(books.ToList());
         }
 
         // GET: Books/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Books books = await db.Books.FindAsync(id);
+            Books books = db.Books.Find(id);
             if (books == null)
             {
                 return HttpNotFound();
@@ -40,8 +44,8 @@ namespace Open_School_Library.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            ViewBag.Dewey = new SelectList(db.Dewey, "id", "DeweyCategoryName");
-            ViewBag.Genre = new SelectList(db.Genres, "id", "Genre");
+            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name");
+            ViewBag.genre = new SelectList(db.Genres, "id", "genre");
             return View();
         }
 
@@ -50,34 +54,34 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,Title,Subtitle,Author,Genre,ISBN,Dewey,LoanedTo,CheckedOutWhen,DueBackWhen,ReturnedWhen")] Books books)
+        public ActionResult Create([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Books books)
         {
             if (ModelState.IsValid)
             {
                 db.Books.Add(books);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Dewey = new SelectList(db.Dewey, "id", "DeweyCategoryName", books.Dewey);
-            ViewBag.Genre = new SelectList(db.Genres, "id", "Genre", books.Genre);
+            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.dewey);
+            ViewBag.genre = new SelectList(db.Genres, "id", "genre", books.genre);
             return View(books);
         }
 
         // GET: Books/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Books books = await db.Books.FindAsync(id);
+            Books books = db.Books.Find(id);
             if (books == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Dewey = new SelectList(db.Dewey, "id", "DeweyCategoryName", books.Dewey);
-            ViewBag.Genre = new SelectList(db.Genres, "id", "Genre", books.Genre);
+            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.dewey);
+            ViewBag.genre = new SelectList(db.Genres, "id", "genre", books.genre);
             return View(books);
         }
 
@@ -86,27 +90,27 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,Title,Subtitle,Author,Genre,ISBN,Dewey,LoanedTo,CheckedOutWhen,DueBackWhen,ReturnedWhen")] Books books)
+        public ActionResult Edit([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Books books)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(books).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Dewey = new SelectList(db.Dewey, "id", "DeweyCategoryName", books.Dewey);
-            ViewBag.Genre = new SelectList(db.Genres, "id", "Genre", books.Genre);
+            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.dewey);
+            ViewBag.genre = new SelectList(db.Genres, "id", "genre", books.genre);
             return View(books);
         }
 
         // GET: Books/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Books books = await db.Books.FindAsync(id);
+            Books books = db.Books.Find(id);
             if (books == null)
             {
                 return HttpNotFound();
@@ -117,11 +121,11 @@ namespace Open_School_Library.Controllers
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Books books = await db.Books.FindAsync(id);
+            Books books = db.Books.Find(id);
             db.Books.Remove(books);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

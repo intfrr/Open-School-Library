@@ -21,8 +21,8 @@ namespace Open_School_Library.Models
         }
     
         public int id { get; set; }
-        public double DeweyDecimalNumber { get; set; }
-        public string DeweyCategoryName { get; set; }
+        public double dewey_number { get; set; }
+        public string dewey_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Books> Books { get; set; }

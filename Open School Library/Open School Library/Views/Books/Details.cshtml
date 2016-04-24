@@ -11,83 +11,51 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            Title
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Subtitle)
+            Subtitle
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Subtitle)
+            @Html.DisplayFor(model => model.subtitle)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author)
+            Author
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.DisplayFor(model => model.author)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ISBN)
+            ISBN
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ISBN)
+            @Html.DisplayFor(model => model.isbn)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LoanedTo)
+            Dewey
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LoanedTo)
+            @Html.DisplayFor(model => model.Dewey_Relation.dewey_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckedOutWhen)
+            Genre
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CheckedOutWhen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DueBackWhen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DueBackWhen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReturnedWhen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReturnedWhen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dewey1.DeweyCategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dewey1.DeweyCategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Genres.Genre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genres.Genre)
+            @Html.DisplayFor(model => model.Genres_Relation.genre)
         </dd>
 
     </dl>
