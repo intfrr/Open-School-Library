@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">First name</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">Last Name</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.grade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">Grade</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.grade, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.grade, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fines, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">Fines</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fines, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.fines, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.issued_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">Student ID</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.issued_id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.issued_id, "", new { @class = "text-danger" })
@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.student_email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2" style="font-weight:bold">Email</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.student_email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.student_email, "", new { @class = "text-danger" })
