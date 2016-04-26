@@ -29,13 +29,13 @@
             ISBN
         </th>
         <th>
-            Student Name
-        </th>
-        <th>
             Category
         </th>
         <th>
             Genre
+        </th>
+        <th>
+            Availability
         </th>
         <th></th>
     </tr>
@@ -52,13 +52,13 @@
             @Html.DisplayFor(modelItem => item.isbn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.student_id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Dewey_Relation.dewey_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Genres_Relation.genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student_id)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

@@ -3,32 +3,31 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Open_School_Library.Models;
 
-namespace Open_School_Library.Views
+namespace Open_School_Library.Controllers
 {
     public class DeweysController : Controller
     {
         private OpenSchoolLibraryDBEntities db = new OpenSchoolLibraryDBEntities();
 
         // GET: Deweys
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Dewey.ToListAsync());
+            return View(db.Dewey.ToList());
         }
 
         // GET: Deweys/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dewey dewey = await db.Dewey.FindAsync(id);
+            Dewey dewey = db.Dewey.Find(id);
             if (dewey == null)
             {
                 return HttpNotFound();
@@ -47,12 +46,12 @@ namespace Open_School_Library.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,DeweyDecimalNumber,DeweyCategoryName")] Dewey dewey)
+        public ActionResult Create([Bind(Include = "id,dewey_number,dewey_name")] Dewey dewey)
         {
             if (ModelState.IsValid)
             {
                 db.Dewey.Add(dewey);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -60,13 +59,13 @@ namespace Open_School_Library.Views
         }
 
         // GET: Deweys/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dewey dewey = await db.Dewey.FindAsync(id);
+            Dewey dewey = db.Dewey.Find(id);
             if (dewey == null)
             {
                 return HttpNotFound();
@@ -79,25 +78,25 @@ namespace Open_School_Library.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,DeweyDecimalNumber,DeweyCategoryName")] Dewey dewey)
+        public ActionResult Edit([Bind(Include = "id,dewey_number,dewey_name")] Dewey dewey)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(dewey).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(dewey);
         }
 
         // GET: Deweys/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dewey dewey = await db.Dewey.FindAsync(id);
+            Dewey dewey = db.Dewey.Find(id);
             if (dewey == null)
             {
                 return HttpNotFound();
@@ -108,11 +107,11 @@ namespace Open_School_Library.Views
         // POST: Deweys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Dewey dewey = await db.Dewey.FindAsync(id);
+            Dewey dewey = db.Dewey.Find(id);
             db.Dewey.Remove(dewey);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
