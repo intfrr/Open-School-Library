@@ -58,7 +58,14 @@
             @Html.DisplayFor(modelItem => item.Genres_Relation.genre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.student_id)
+            @if (item.student_id != null)
+            {
+                
+            }
+            else
+            {
+                <text>Available</text>
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
