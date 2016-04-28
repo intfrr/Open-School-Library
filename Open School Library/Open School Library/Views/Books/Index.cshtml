@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Open_School_Library.Models.Books>
+﻿@model IEnumerable<Open_School_Library.Models.BookListViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -52,19 +52,19 @@
             @Html.DisplayFor(modelItem => item.isbn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Dewey_Relation.dewey_name)
+            @Html.DisplayFor(modelItem => item.dewey_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Genres_Relation.genre)
+            @Html.DisplayFor(modelItem => item.genre)
         </td>
         <td>
-            @if (item.student_id != null)
+            @if (item.first_name != null)
             {
-                
+                @Html.DisplayFor(modelItem => item.first_name)
             }
             else
             {
-                <text>Available</text>
+                <text> Available </text>
             }
         </td>
         <td>

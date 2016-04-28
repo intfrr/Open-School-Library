@@ -17,14 +17,41 @@ namespace Open_School_Library.Controllers
         // GET: Books
         public ActionResult Index(string searchTerm)
         {
-            var books = db.Books.Include(b => b.Dewey_Relation).Include(b => b.Genres_Relation);
+            IEnumerable<BookListViewModel> model =
+            db.Books
+            //.Include(b => b.Dewey_Relation)
+            //.Include(b => b.Genres_Relation)
+            .OrderByDescending(r => r.title)
+            .Where(r => searchTerm == null || r.title.StartsWith(searchTerm))
+            .Take(10)
+            .Select(r => new BookListViewModel
+            {
+                title = r.title,
+                subtitle = r.subtitle,
+                author = r.author,
+                genre = r.Genres.genre,
+                isbn = r.isbn,
 
-            if (!String.IsNullOrEmpty(searchTerm)) 
-            { 
-                books = books.Where(s => s.title.Contains(searchTerm)); 
+                //TODO: Figureout best way to display Dewey.
+                //We only need one reference here.
+                //Dewey = r.Dewey,
+                //DeweyDecimalNumber = r.DeweyTable.DeweyDecimalNumber,
+                dewey_name = r.Dewey1.dewey_name,
+                first_name = r.book_loans.FirstOrDefault(w => w.returned_when == null).Students.first_name
+                //StudentName = r.book_loans1.StudentsTable.FirstName,
+                //StudentName - r.book_loans_Relation.
+                //CheckedOutWhen = r.book_loans1.CheckedOutAt,
+                //DueBackWhen = r.book_loans1.DueAt,
+                //ReturnedWhen = r.book_loans1.ReturnedAt
+                //LoanedTo = r.StudentsTable.FirstName,
+                //CheckedOutWhen = r.CheckedOutWhen,
+                //DueBackWhen = r.DueBackWhen,
+                //ReturnedWhen = r.ReturnedWhen
+            });
+            
+            return View(model);
+
             }
-            return View(books.ToList());
-        }
 
         // GET: Books/Details/5
         public ActionResult Details(int? id)

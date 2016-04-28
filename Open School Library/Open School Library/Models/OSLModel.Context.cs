@@ -31,5 +31,6 @@ namespace Open_School_Library.Models
         public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<OSL_Settings> OSL_Settings { get; set; }
         public virtual DbSet<Students> Students { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

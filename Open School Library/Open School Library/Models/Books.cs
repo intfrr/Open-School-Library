@@ -17,7 +17,7 @@ namespace Open_School_Library.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Books()
         {
-            this.book_loans_Relation = new HashSet<book_loans>();
+            this.book_loans = new HashSet<book_loans>();
         }
     
         public int id { get; set; }
@@ -27,11 +27,10 @@ namespace Open_School_Library.Models
         public int genre { get; set; }
         public int isbn { get; set; }
         public Nullable<int> dewey { get; set; }
-        public Nullable<int> student_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book_loans> book_loans_Relation { get; set; }
-        public virtual Dewey Dewey_Relation { get; set; }
-        public virtual Genres Genres_Relation { get; set; }
+        public virtual ICollection<book_loans> book_loans { get; set; }
+        public virtual Dewey Dewey1 { get; set; }
+        public virtual Genres Genres { get; set; }
     }
 }
