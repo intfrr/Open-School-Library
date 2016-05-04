@@ -23,15 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.dewey_number)
+            @Html.DisplayFor(modelItem => item.DeweyNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dewey_name)
+            @Html.DisplayFor(modelItem => item.DeweyName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.DeweyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DeweyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DeweyID })
         </td>
     </tr>
 }
