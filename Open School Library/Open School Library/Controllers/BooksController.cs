@@ -26,6 +26,7 @@ namespace Open_School_Library.Controllers
             .Take(10)
             .Select(r => new BookListViewModel
             {
+                BookID = r.BookID,
                 title = r.Title,
                 subtitle = r.Subtitle,
                 author = r.Author,
@@ -60,12 +61,12 @@ namespace Open_School_Library.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book books = db.Book.Find(id);
-            if (books == null)
+            Book book = db.Book.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(books);
+            return View(book);
         }
 
         // GET: Books/Create

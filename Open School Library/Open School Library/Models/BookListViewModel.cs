@@ -7,7 +7,7 @@ namespace Open_School_Library.Models
 {
     public class BookListViewModel
     {
-        public int id { get; set; }
+        public int BookID { get; set; }
         public string title { get; set; }
         public string subtitle { get; set; }
         public string author { get; set; }
