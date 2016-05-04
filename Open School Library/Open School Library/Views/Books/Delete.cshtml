@@ -1,4 +1,4 @@
-﻿@model Open_School_Library.Models.Books
+﻿@model Open_School_Library.Models.Book
 
 @{
     ViewBag.Title = "Delete";
@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.title)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
@@ -24,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.subtitle)
+            @Html.DisplayFor(model => model.Subtitle)
         </dd>
 
         <dt>
@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.author)
+            @Html.DisplayFor(model => model.Author)
         </dd>
 
         <dt>
@@ -40,7 +40,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.isbn)
+            @Html.DisplayFor(model => model.ISBN)
         </dd>
 
         <dt>
@@ -48,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Dewey_Relation.dewey_name)
+            @Html.DisplayFor(model => model.Dewey1.DeweyName)
         </dd>
 
         <dt>
@@ -56,7 +56,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Genres_Relation.genre)
+            @Html.DisplayFor(model => model.Genre1.GenreName)
         </dd>
 
     </dl>
