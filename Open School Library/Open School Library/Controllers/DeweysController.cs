@@ -78,7 +78,7 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,dewey_number,dewey_name")] Dewey dewey)
+        public ActionResult Edit([Bind(Include = "DeweyID,DeweyNumber,DeweyName")] Dewey dewey)
         {
             if (ModelState.IsValid)
             {

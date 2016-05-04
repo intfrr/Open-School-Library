@@ -15,21 +15,21 @@
         <h4>Dewey</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.DeweyID)
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Dewey Decimal</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dewey_number, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dewey_number, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DeweyNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeweyNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Class</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dewey_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.dewey_name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DeweyName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeweyName, "", new { @class = "text-danger" })
             </div>
         </div>
 
