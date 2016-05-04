@@ -82,7 +82,7 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Book book)
+        public ActionResult Create([Bind(Include = "BookID,Title,Subtitle,Author,Genre,ISBN,Dewey")] Book book)
         {
             if (ModelState.IsValid)
             {
