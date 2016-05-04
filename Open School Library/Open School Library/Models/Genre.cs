@@ -15,18 +15,27 @@ namespace Open_School_Library.Models
 using System;
     using System.Collections.Generic;
     
-public partial class sysdiagrams
+public partial class Genre
 {
 
-    public string name { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Genre()
+    {
 
-    public int principal_id { get; set; }
+        this.Book = new HashSet<Book>();
 
-    public int diagram_id { get; set; }
+    }
 
-    public Nullable<int> version { get; set; }
 
-    public byte[] definition { get; set; }
+    public int GenreID { get; set; }
+
+    public string GenreName { get; set; }
+
+
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Book> Book { get; set; }
 
 }
 

@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6950df4ae747475ea3e0bbe3b928553a" Name="Diagram1">
-        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.book_loans" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Books" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Book" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Book_Loans" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Dewey" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Genres" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Genre" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.OSL_Settings" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Students" Width="1.5" PointX="3" PointY="5.125" />
-        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.Student" Width="1.5" PointX="3" PointY="5.125" />
         <AssociationConnector Association="OpenSchoolLibraryDBModel.FK_book_lonas_Books" />
-        <AssociationConnector Association="OpenSchoolLibraryDBModel.FK_book_lonas_Students" />
         <AssociationConnector Association="OpenSchoolLibraryDBModel.FK_Books_Dewey" />
         <AssociationConnector Association="OpenSchoolLibraryDBModel.FK_Books_Genres" />
+        <AssociationConnector Association="OpenSchoolLibraryDBModel.FK_book_lonas_Students" />
+        <EntityTypeShape EntityType="OpenSchoolLibraryDBModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

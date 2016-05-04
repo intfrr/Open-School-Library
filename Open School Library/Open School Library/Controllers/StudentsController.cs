@@ -17,7 +17,7 @@ namespace Open_School_Library.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View(db.Student.ToList());
         }
 
         // GET: Students/Details/5
@@ -27,12 +27,12 @@ namespace Open_School_Library.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Students students = db.Students.Find(id);
-            if (students == null)
+            Student student = db.Student.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(students);
+            return View(student);
         }
 
         // GET: Students/Create
@@ -46,11 +46,11 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,first_name,last_name,grade,fines,issued_id,student_email")] Students students)
+        public ActionResult Create([Bind(Include = "id,first_name,last_name,grade,fines,issued_id,student_email")] Student students)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(students);
+                db.Student.Add(students);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,12 +65,12 @@ namespace Open_School_Library.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Students students = db.Students.Find(id);
-            if (students == null)
+            Student student = db.Student.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(students);
+            return View(student);
         }
 
         // POST: Students/Edit/5
@@ -78,7 +78,7 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,first_name,last_name,grade,fines,issued_id,student_email")] Students students)
+        public ActionResult Edit([Bind(Include = "id,first_name,last_name,grade,fines,issued_id,student_email")] Student students)
         {
             if (ModelState.IsValid)
             {
@@ -96,12 +96,12 @@ namespace Open_School_Library.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Students students = db.Students.Find(id);
-            if (students == null)
+            Student student = db.Student.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(students);
+            return View(student);
         }
 
         // POST: Students/Delete/5
@@ -109,8 +109,8 @@ namespace Open_School_Library.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Students students = db.Students.Find(id);
-            db.Students.Remove(students);
+            Student student = db.Student.Find(id);
+            db.Student.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -208,17 +208,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BookListViewModel.cs" />
-    <Compile Include="Models\Books.cs">
+    <Compile Include="Models\Book.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\book_loans.cs">
+    <Compile Include="Models\BookListViewModel.cs" />
+    <Compile Include="Models\Book_Loans.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dewey.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Genres.cs">
+    <Compile Include="Models\Genre.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -241,7 +241,7 @@
     <Compile Include="Models\OSL_Settings.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Students.cs">
+    <Compile Include="Models\Student.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -271,9 +271,6 @@
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EntityDeploy Include="Models\OSLModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OSLModel.Designer.cs</LastGenOutput>
