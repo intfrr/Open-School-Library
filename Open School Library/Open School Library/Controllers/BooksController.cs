@@ -71,8 +71,8 @@ namespace Open_School_Library.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name");
-            ViewBag.genre = new SelectList(db.Genre, "id", "genre");
+            ViewBag.dewey = new SelectList(db.Dewey, "DeweyID", "DeweyName");
+            ViewBag.genre = new SelectList(db.Genre, "GenreID", "GenreName");
             return View();
         }
 
@@ -81,18 +81,18 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Book books)
+        public ActionResult Create([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Book.Add(books);
+                db.Book.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.Dewey);
-            ViewBag.genre = new SelectList(db.Genre, "id", "genre", books.Genre);
-            return View(books);
+            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", book.Dewey);
+            ViewBag.genre = new SelectList(db.Genre, "id", "genre", book.Genre);
+            return View(book);
         }
 
         // GET: Books/Edit/5
