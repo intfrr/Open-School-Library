@@ -1,4 +1,4 @@
-﻿@model Open_School_Library.Models.Books
+﻿@model Open_School_Library.Models.Book
 
 @{
     ViewBag.Title = "Edit";
@@ -15,53 +15,53 @@
         <h4>Books</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.BookID)
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Title</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Subtitle</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.subtitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.subtitle, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Subtitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subtitle, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Author</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Genre</div>
             <div class="col-md-10">
-                @Html.DropDownList("genre", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.genre, "", new { @class = "text-danger" })
+                @Html.DropDownList("Genre", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">ISBN</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.isbn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.isbn, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Dewey</div>
             <div class="col-md-10">
-                @Html.DropDownList("dewey", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.dewey, "", new { @class = "text-danger" })
+                @Html.DropDownList("Dewey", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Dewey, "", new { @class = "text-danger" })
             </div>
         </div>
 

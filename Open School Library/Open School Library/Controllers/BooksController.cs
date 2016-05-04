@@ -108,8 +108,8 @@ namespace Open_School_Library.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.Dewey);
-            ViewBag.genre = new SelectList(db.Genre, "id", "genre", books.Genre);
+            ViewBag.dewey = new SelectList(db.Dewey, "DeweyID", "DeweyName", books.Dewey);
+            ViewBag.genre = new SelectList(db.Genre, "GenreID", "GenreName", books.Genre);
             return View(books);
         }
 
@@ -118,17 +118,17 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,title,subtitle,author,genre,isbn,dewey,student_id")] Book books)
+        public ActionResult Edit([Bind(Include = "BookID,Title,Subtitle,Author,Genre,ISBN,Dewey")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(books).State = EntityState.Modified;
+                db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.dewey = new SelectList(db.Dewey, "id", "dewey_name", books.Dewey);
-            ViewBag.genre = new SelectList(db.Genre, "id", "genre", books.Genre);
-            return View(books);
+            ViewBag.dewey = new SelectList(db.Dewey, "DeweyID", "DeweyName", book.Dewey);
+            ViewBag.genre = new SelectList(db.Genre, "GenreID", "GenreName", book.Genre);
+            return View(book);
         }
 
         // GET: Books/Delete/5
