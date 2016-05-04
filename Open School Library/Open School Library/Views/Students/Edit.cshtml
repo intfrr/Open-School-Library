@@ -1,4 +1,4 @@
-﻿@model Open_School_Library.Models.Students
+﻿@model Open_School_Library.Models.Student
 
 @{
     ViewBag.Title = "Edit";
@@ -15,53 +15,53 @@
         <h4>Students</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.StudentID)
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">First name</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Last Name</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Grade</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.grade, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.grade, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Fines</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fines, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fines, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Fines, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fines, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Student ID</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.issued_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.issued_id, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.IssuedID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IssuedID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2" style="font-weight:bold">Email</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.student_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.student_email, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-danger" })
             </div>
         </div>
 

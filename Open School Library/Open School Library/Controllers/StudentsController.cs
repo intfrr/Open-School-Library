@@ -78,15 +78,15 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,first_name,last_name,grade,fines,issued_id,student_email")] Student students)
+        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Grade,Fines,IssuedID,StudentEmail")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(students).State = EntityState.Modified;
+                db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(students);
+            return View(student);
         }
 
         // GET: Students/Delete/5
