@@ -34,7 +34,7 @@ public partial class OpenSchoolLibraryDBEntities : DbContext
 
     public virtual DbSet<Book> Book { get; set; }
 
-    public virtual DbSet<Book_Loans> Book_Loans { get; set; }
+    public virtual DbSet<BookLoan> BookLoan { get; set; }
 
     public virtual DbSet<Dewey> Dewey { get; set; }
 
@@ -43,8 +43,6 @@ public partial class OpenSchoolLibraryDBEntities : DbContext
     public virtual DbSet<OSL_Settings> OSL_Settings { get; set; }
 
     public virtual DbSet<Student> Student { get; set; }
-
-    public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
 }
 

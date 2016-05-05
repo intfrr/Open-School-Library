@@ -212,7 +212,7 @@
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookListViewModel.cs" />
-    <Compile Include="Models\Book_Loans.cs">
+    <Compile Include="Models\BookLoan.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dewey.cs">
@@ -242,9 +242,6 @@
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>OSLModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

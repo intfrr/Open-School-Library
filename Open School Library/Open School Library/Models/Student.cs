@@ -22,7 +22,7 @@ public partial class Student
     public Student()
     {
 
-        this.Book_Loans = new HashSet<Book_Loans>();
+        this.BookLoan = new HashSet<BookLoan>();
 
     }
 
@@ -45,7 +45,7 @@ public partial class Student
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Book_Loans> Book_Loans { get; set; }
+    public virtual ICollection<BookLoan> BookLoan { get; set; }
 
 }
 

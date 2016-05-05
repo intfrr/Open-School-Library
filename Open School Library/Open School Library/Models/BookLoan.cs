@@ -15,18 +15,26 @@ namespace Open_School_Library.Models
 using System;
     using System.Collections.Generic;
     
-public partial class sysdiagrams
+public partial class BookLoan
 {
 
-    public string name { get; set; }
+    public int BookLoanID { get; set; }
 
-    public int principal_id { get; set; }
+    public int StudentID { get; set; }
 
-    public int diagram_id { get; set; }
+    public int BookID { get; set; }
 
-    public Nullable<int> version { get; set; }
+    public System.DateTime CheckedOutWhen { get; set; }
 
-    public byte[] definition { get; set; }
+    public System.DateTime DueWhen { get; set; }
+
+    public Nullable<System.DateTime> ReturnedWhen { get; set; }
+
+
+
+    public virtual Book Book { get; set; }
+
+    public virtual Student Student { get; set; }
 
 }
 

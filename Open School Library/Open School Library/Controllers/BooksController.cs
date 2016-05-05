@@ -38,7 +38,7 @@ namespace Open_School_Library.Controllers
                 //Dewey = r.Dewey,
                 //DeweyDecimalNumber = r.DeweyTable.DeweyDecimalNumber,
                 dewey_name = r.Dewey1.DeweyName,
-                first_name = r.Book_Loans.FirstOrDefault(w => w.ReturnedWhen == null).Student.FirstName
+                first_name = r.BookLoan.FirstOrDefault(w => w.ReturnedWhen == null).Student.FirstName
                 //StudentName = r.book_loans1.StudentsTable.FirstName,
                 //StudentName - r.book_loans_Relation.
                 //CheckedOutWhen = r.book_loans1.CheckedOutAt,
