@@ -10,7 +10,7 @@ using Open_School_Library.Models;
 
 namespace Open_School_Library.Controllers
 {
-    public class GenreController : Controller
+    public class GenresController : Controller
     {
         private OpenSchoolLibraryDBEntities db = new OpenSchoolLibraryDBEntities();
 
