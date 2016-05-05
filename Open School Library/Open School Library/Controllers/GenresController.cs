@@ -46,7 +46,7 @@ namespace Open_School_Library.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,genre")] Genre Genre)
+        public ActionResult Create([Bind(Include = "GenreID,GenreName")] Genre Genre)
         {
             if (ModelState.IsValid)
             {
