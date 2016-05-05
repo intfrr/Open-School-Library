@@ -1,4 +1,4 @@
-﻿@model Open_School_Library.Models.Genres
+﻿@model Open_School_Library.Models.Genre
 
 @{
     ViewBag.Title = "Details";
@@ -15,12 +15,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.genre)
+            @Html.DisplayFor(model => model.GenreName)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GenreID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
