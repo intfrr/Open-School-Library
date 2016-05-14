@@ -13,7 +13,7 @@ namespace Open_School_Library.Helpers
             try
             {
                 int isbnCount = 0;
-                while (isbnCount < 101 )
+                while (isbnCount < 101)
                 {
                     Book book = new Book
                     {
@@ -35,9 +35,49 @@ namespace Open_School_Library.Helpers
             catch (Exception)
             {
 
-               
+
             }
-            
+
+        }
+
+        public static void seedStudentTable()
+        {
+            try
+            {
+                var context = new OpenSchoolLibraryDBEntities();
+                context.Database.ExecuteSqlCommand("DELETE FROM Student");
+
+                int count = 0;
+
+                while (count < 101)
+                {
+                    Random r = new Random();
+                    int grade = r.Next(1, 12);
+                    int issuedID = r.Next(1, 999);
+
+                    Student student = new Student
+                    {
+                        FirstName = "First Name",
+                        LastName = "Last Name",
+                        Grade = grade,
+                        Fines = 0,
+                        IssuedID = issuedID,
+                        StudentEmail = "a@b.com"
+                    };
+
+
+                    context.Student.Add(student);
+                    context.SaveChanges();
+
+                    count++;
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
         }
     }
 }
