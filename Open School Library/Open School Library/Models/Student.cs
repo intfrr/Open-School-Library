@@ -15,29 +15,37 @@ namespace Open_School_Library.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Dewey
+public partial class Student
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Dewey()
+    public Student()
     {
 
-        this.Book = new HashSet<Book>();
+        this.BookLoan = new HashSet<BookLoan>();
 
     }
 
 
-    public int DeweyID { get; set; }
+    public int StudentID { get; set; }
 
-    public double DeweyNumber { get; set; }
+    public string FirstName { get; set; }
 
-    public string DeweyName { get; set; }
+    public string LastName { get; set; }
+
+    public int Grade { get; set; }
+
+    public Nullable<decimal> Fines { get; set; }
+
+    public Nullable<int> IssuedID { get; set; }
+
+    public string StudentEmail { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Book> Book { get; set; }
+    public virtual ICollection<BookLoan> BookLoan { get; set; }
 
 }
 

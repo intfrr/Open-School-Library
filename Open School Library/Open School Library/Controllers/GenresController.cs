@@ -14,103 +14,103 @@ namespace Open_School_Library.Controllers
     {
         private OpenSchoolLibraryDBEntities db = new OpenSchoolLibraryDBEntities();
 
-        // GET: Genres
+        // GET: Genre
         public ActionResult Index()
         {
-            return View(db.Genres.ToList());
+            return View(db.Genre.ToList());
         }
 
-        // GET: Genres/Details/5
+        // GET: Genre/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genres genres = db.Genres.Find(id);
-            if (genres == null)
+            Genre Genre = db.Genre.Find(id);
+            if (Genre == null)
             {
                 return HttpNotFound();
             }
-            return View(genres);
+            return View(Genre);
         }
 
-        // GET: Genres/Create
+        // GET: Genre/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Genres/Create
+        // POST: Genre/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,genre")] Genres genres)
+        public ActionResult Create([Bind(Include = "GenreID,GenreName")] Genre Genre)
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genres);
+                db.Genre.Add(Genre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(genres);
+            return View(Genre);
         }
 
-        // GET: Genres/Edit/5
+        // GET: Genre/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genres genres = db.Genres.Find(id);
-            if (genres == null)
+            Genre Genre = db.Genre.Find(id);
+            if (Genre == null)
             {
                 return HttpNotFound();
             }
-            return View(genres);
+            return View(Genre);
         }
 
-        // POST: Genres/Edit/5
+        // POST: Genre/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,genre")] Genres genres)
+        public ActionResult Edit([Bind(Include = "GenreID,GenreName")] Genre Genre)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genres).State = EntityState.Modified;
+                db.Entry(Genre).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genres);
+            return View(Genre);
         }
 
-        // GET: Genres/Delete/5
+        // GET: Genre/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genres genres = db.Genres.Find(id);
-            if (genres == null)
+            Genre Genre = db.Genre.Find(id);
+            if (Genre == null)
             {
                 return HttpNotFound();
             }
-            return View(genres);
+            return View(Genre);
         }
 
-        // POST: Genres/Delete/5
+        // POST: Genre/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genres genres = db.Genres.Find(id);
-            db.Genres.Remove(genres);
+            Genre Genre = db.Genre.Find(id);
+            db.Genre.Remove(Genre);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

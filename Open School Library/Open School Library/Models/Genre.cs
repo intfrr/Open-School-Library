@@ -15,11 +15,11 @@ namespace Open_School_Library.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Dewey
+public partial class Genre
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Dewey()
+    public Genre()
     {
 
         this.Book = new HashSet<Book>();
@@ -27,11 +27,9 @@ public partial class Dewey
     }
 
 
-    public int DeweyID { get; set; }
+    public int GenreID { get; set; }
 
-    public double DeweyNumber { get; set; }
-
-    public string DeweyName { get; set; }
+    public string GenreName { get; set; }
 
 
 

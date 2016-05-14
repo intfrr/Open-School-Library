@@ -5,44 +5,43 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="OpenSchoolLibraryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="book_loans">
+        <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="BookID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="student_id" Type="int" Nullable="false" />
-          <Property Name="book_id" Type="int" Nullable="false" />
-          <Property Name="checked_out_when" Type="date" Nullable="false" />
-          <Property Name="due_when" Type="date" Nullable="false" />
-          <Property Name="returned_when" Type="date" />
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Subtitle" Type="varchar" MaxLength="100" />
+          <Property Name="Author" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Genre" Type="int" Nullable="false" />
+          <Property Name="ISBN" Type="int" Nullable="false" />
+          <Property Name="Dewey" Type="int" />
         </EntityType>
-        <EntityType Name="Books">
+        <EntityType Name="BookLoan">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="BookLoanID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="subtitle" Type="varchar" MaxLength="100" />
-          <Property Name="author" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="genre" Type="int" Nullable="false" />
-          <Property Name="isbn" Type="int" Nullable="false" />
-          <Property Name="dewey" Type="int" />
-          <Property Name="student_id" Type="int" />
+          <Property Name="BookLoanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="CheckedOutWhen" Type="date" Nullable="false" />
+          <Property Name="DueWhen" Type="date" Nullable="false" />
+          <Property Name="ReturnedWhen" Type="date" />
         </EntityType>
         <EntityType Name="Dewey">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="DeweyID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dewey_number" Type="float" Nullable="false" />
-          <Property Name="dewey_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeweyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeweyNumber" Type="float" Nullable="false" />
+          <Property Name="DeweyName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="Genres">
+        <EntityType Name="Genre">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="GenreID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="genre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenreName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="OSL_Settings">
           <Key>
@@ -51,88 +50,88 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FinesAmount" Type="money" />
         </EntityType>
-        <EntityType Name="Students">
+        <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="first_name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="last_name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="grade" Type="int" Nullable="false" />
-          <Property Name="fines" Type="money" />
-          <Property Name="issued_id" Type="int" />
-          <Property Name="student_email" Type="varchar" MaxLength="100" />
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Grade" Type="int" Nullable="false" />
+          <Property Name="Fines" Type="money" />
+          <Property Name="IssuedID" Type="int" />
+          <Property Name="StudentEmail" Type="varchar" MaxLength="100" />
         </EntityType>
-        <Association Name="FK_book_lonas_Books">
-          <End Role="Books" Type="Self.Books" Multiplicity="1" />
-          <End Role="book_loans" Type="Self.book_loans" Multiplicity="*" />
+        <Association Name="FK_BookLoan_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookLoan" Type="Self.BookLoan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Books">
-              <PropertyRef Name="id" />
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
             </Principal>
-            <Dependent Role="book_loans">
-              <PropertyRef Name="book_id" />
+            <Dependent Role="BookLoan">
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_book_lonas_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="1" />
-          <End Role="book_loans" Type="Self.book_loans" Multiplicity="*" />
+        <Association Name="FK_BookLoan_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="BookLoan" Type="Self.BookLoan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="id" />
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
             </Principal>
-            <Dependent Role="book_loans">
-              <PropertyRef Name="student_id" />
+            <Dependent Role="BookLoan">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Books_Dewey">
           <End Role="Dewey" Type="Self.Dewey" Multiplicity="0..1" />
-          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dewey">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="DeweyID" />
             </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="dewey" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Dewey" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Books_Genres">
-          <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
-          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genres">
-              <PropertyRef Name="id" />
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreID" />
             </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="genre" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Genre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OpenSchoolLibraryDBModelStoreContainer">
-          <EntitySet Name="book_loans" EntityType="Self.book_loans" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookLoan" EntityType="Self.BookLoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dewey" EntityType="Self.Dewey" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OSL_Settings" EntityType="Self.OSL_Settings" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_book_lonas_Books" Association="Self.FK_book_lonas_Books">
-            <End Role="Books" EntitySet="Books" />
-            <End Role="book_loans" EntitySet="book_loans" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookLoan_Book" Association="Self.FK_BookLoan_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookLoan" EntitySet="BookLoan" />
           </AssociationSet>
-          <AssociationSet Name="FK_book_lonas_Students" Association="Self.FK_book_lonas_Students">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="book_loans" EntitySet="book_loans" />
+          <AssociationSet Name="FK_BookLoan_Student" Association="Self.FK_BookLoan_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BookLoan" EntitySet="BookLoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_Dewey" Association="Self.FK_Books_Dewey">
             <End Role="Dewey" EntitySet="Dewey" />
-            <End Role="Books" EntitySet="Books" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_Genres" Association="Self.FK_Books_Genres">
-            <End Role="Genres" EntitySet="Genres" />
-            <End Role="Books" EntitySet="Books" />
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -140,74 +139,73 @@
     <edmx:ConceptualModels>
       <Schema Namespace="OpenSchoolLibraryDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OpenSchoolLibraryDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="book_loans" EntityType="OpenSchoolLibraryDBModel.book_loans" />
-          <EntitySet Name="Books" EntityType="OpenSchoolLibraryDBModel.Books" />
+          <EntitySet Name="Book" EntityType="OpenSchoolLibraryDBModel.Book" />
+          <EntitySet Name="BookLoan" EntityType="OpenSchoolLibraryDBModel.BookLoan" />
           <EntitySet Name="Dewey" EntityType="OpenSchoolLibraryDBModel.Dewey" />
-          <EntitySet Name="Genres" EntityType="OpenSchoolLibraryDBModel.Genres" />
+          <EntitySet Name="Genre" EntityType="OpenSchoolLibraryDBModel.Genre" />
           <EntitySet Name="OSL_Settings" EntityType="OpenSchoolLibraryDBModel.OSL_Settings" />
-          <EntitySet Name="Students" EntityType="OpenSchoolLibraryDBModel.Students" />
-          <AssociationSet Name="FK_book_lonas_Books" Association="OpenSchoolLibraryDBModel.FK_book_lonas_Books">
-            <End Role="Books" EntitySet="Books" />
-            <End Role="book_loans" EntitySet="book_loans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_book_lonas_Students" Association="OpenSchoolLibraryDBModel.FK_book_lonas_Students">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="book_loans" EntitySet="book_loans" />
+          <EntitySet Name="Student" EntityType="OpenSchoolLibraryDBModel.Student" />
+          <AssociationSet Name="FK_BookLoan_Book" Association="OpenSchoolLibraryDBModel.FK_BookLoan_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookLoan" EntitySet="BookLoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_Dewey" Association="OpenSchoolLibraryDBModel.FK_Books_Dewey">
             <End Role="Dewey" EntitySet="Dewey" />
-            <End Role="Books" EntitySet="Books" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_Genres" Association="OpenSchoolLibraryDBModel.FK_Books_Genres">
-            <End Role="Genres" EntitySet="Genres" />
-            <End Role="Books" EntitySet="Books" />
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookLoan_Student" Association="OpenSchoolLibraryDBModel.FK_BookLoan_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BookLoan" EntitySet="BookLoan" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="book_loans">
+        <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="BookID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="student_id" Type="Int32" Nullable="false" />
-          <Property Name="book_id" Type="Int32" Nullable="false" />
-          <Property Name="checked_out_when" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="due_when" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="returned_when" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Books_Relation" Relationship="OpenSchoolLibraryDBModel.FK_book_lonas_Books" FromRole="book_loans" ToRole="Books" />
-          <NavigationProperty Name="Students_Relation" Relationship="OpenSchoolLibraryDBModel.FK_book_lonas_Students" FromRole="book_loans" ToRole="Students" />
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="Int32" Nullable="false" />
+          <Property Name="ISBN" Type="Int32" Nullable="false" />
+          <Property Name="Dewey" Type="Int32" />
+          <NavigationProperty Name="BookLoan" Relationship="OpenSchoolLibraryDBModel.FK_BookLoan_Book" FromRole="Book" ToRole="BookLoan" />
+          <NavigationProperty Name="Dewey1" Relationship="OpenSchoolLibraryDBModel.FK_Books_Dewey" FromRole="Book" ToRole="Dewey" />
+          <NavigationProperty Name="Genre1" Relationship="OpenSchoolLibraryDBModel.FK_Books_Genres" FromRole="Book" ToRole="Genre" />
         </EntityType>
-        <EntityType Name="Books">
+        <EntityType Name="BookLoan">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="BookLoanID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="author" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="genre" Type="Int32" Nullable="false" />
-          <Property Name="isbn" Type="Int32" Nullable="false" />
-          <Property Name="dewey" Type="Int32" />
-          <Property Name="student_id" Type="Int32" />
-          <NavigationProperty Name="book_loans_Relation" Relationship="OpenSchoolLibraryDBModel.FK_book_lonas_Books" FromRole="Books" ToRole="book_loans" />
-          <NavigationProperty Name="Dewey_Relation" Relationship="OpenSchoolLibraryDBModel.FK_Books_Dewey" FromRole="Books" ToRole="Dewey" />
-          <NavigationProperty Name="Genres_Relation" Relationship="OpenSchoolLibraryDBModel.FK_Books_Genres" FromRole="Books" ToRole="Genres" />
+          <Property Name="BookLoanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="CheckedOutWhen" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DueWhen" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReturnedWhen" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Book" Relationship="OpenSchoolLibraryDBModel.FK_BookLoan_Book" FromRole="BookLoan" ToRole="Book" />
+          <NavigationProperty Name="Student" Relationship="OpenSchoolLibraryDBModel.FK_BookLoan_Student" FromRole="BookLoan" ToRole="Student" />
         </EntityType>
         <EntityType Name="Dewey">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="DeweyID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dewey_number" Type="Double" Nullable="false" />
-          <Property Name="dewey_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Books" Relationship="OpenSchoolLibraryDBModel.FK_Books_Dewey" FromRole="Dewey" ToRole="Books" />
+          <Property Name="DeweyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeweyNumber" Type="Double" Nullable="false" />
+          <Property Name="DeweyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="OpenSchoolLibraryDBModel.FK_Books_Dewey" FromRole="Dewey" ToRole="Book" />
         </EntityType>
-        <EntityType Name="Genres">
+        <EntityType Name="Genre">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="GenreID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="genre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Books" Relationship="OpenSchoolLibraryDBModel.FK_Books_Genres" FromRole="Genres" ToRole="Books" />
+          <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenreName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="OpenSchoolLibraryDBModel.FK_Books_Genres" FromRole="Genre" ToRole="Book" />
         </EntityType>
         <EntityType Name="OSL_Settings">
           <Key>
@@ -216,64 +214,64 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FinesAmount" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
-        <EntityType Name="Students">
+        <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="first_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="grade" Type="Int32" Nullable="false" />
-          <Property Name="fines" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="issued_id" Type="Int32" />
-          <Property Name="student_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="book_loans" Relationship="OpenSchoolLibraryDBModel.FK_book_lonas_Students" FromRole="Students" ToRole="book_loans" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <Property Name="Fines" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IssuedID" Type="Int32" />
+          <Property Name="StudentEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BookLoan" Relationship="OpenSchoolLibraryDBModel.FK_BookLoan_Student" FromRole="Student" ToRole="BookLoan" />
         </EntityType>
-        <Association Name="FK_book_lonas_Books">
-          <End Type="OpenSchoolLibraryDBModel.Books" Role="Books" Multiplicity="1" />
-          <End Type="OpenSchoolLibraryDBModel.book_loans" Role="book_loans" Multiplicity="*" />
+        <Association Name="FK_BookLoan_Book">
+          <End Type="OpenSchoolLibraryDBModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="OpenSchoolLibraryDBModel.BookLoan" Role="BookLoan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Books">
-              <PropertyRef Name="id" />
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
             </Principal>
-            <Dependent Role="book_loans">
-              <PropertyRef Name="book_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_book_lonas_Students">
-          <End Type="OpenSchoolLibraryDBModel.Students" Role="Students" Multiplicity="1" />
-          <End Type="OpenSchoolLibraryDBModel.book_loans" Role="book_loans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="book_loans">
-              <PropertyRef Name="student_id" />
+            <Dependent Role="BookLoan">
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Books_Dewey">
           <End Type="OpenSchoolLibraryDBModel.Dewey" Role="Dewey" Multiplicity="0..1" />
-          <End Type="OpenSchoolLibraryDBModel.Books" Role="Books" Multiplicity="*" />
+          <End Type="OpenSchoolLibraryDBModel.Book" Role="Book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dewey">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="DeweyID" />
             </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="dewey" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Dewey" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Books_Genres">
-          <End Type="OpenSchoolLibraryDBModel.Genres" Role="Genres" Multiplicity="1" />
-          <End Type="OpenSchoolLibraryDBModel.Books" Role="Books" Multiplicity="*" />
+          <End Type="OpenSchoolLibraryDBModel.Genre" Role="Genre" Multiplicity="1" />
+          <End Type="OpenSchoolLibraryDBModel.Book" Role="Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genres">
-              <PropertyRef Name="id" />
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreID" />
             </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="genre" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookLoan_Student">
+          <End Type="OpenSchoolLibraryDBModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="OpenSchoolLibraryDBModel.BookLoan" Role="BookLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="BookLoan">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -283,46 +281,45 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OpenSchoolLibraryDBModelStoreContainer" CdmEntityContainer="OpenSchoolLibraryDBEntities">
-          <EntitySetMapping Name="book_loans">
-            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.book_loans">
-              <MappingFragment StoreEntitySet="book_loans">
-                <ScalarProperty Name="returned_when" ColumnName="returned_when" />
-                <ScalarProperty Name="due_when" ColumnName="due_when" />
-                <ScalarProperty Name="checked_out_when" ColumnName="checked_out_when" />
-                <ScalarProperty Name="book_id" ColumnName="book_id" />
-                <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Dewey" ColumnName="Dewey" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Books">
-              <MappingFragment StoreEntitySet="Books">
-                <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="dewey" ColumnName="dewey" />
-                <ScalarProperty Name="isbn" ColumnName="isbn" />
-                <ScalarProperty Name="genre" ColumnName="genre" />
-                <ScalarProperty Name="author" ColumnName="author" />
-                <ScalarProperty Name="subtitle" ColumnName="subtitle" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="BookLoan">
+            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.BookLoan">
+              <MappingFragment StoreEntitySet="BookLoan">
+                <ScalarProperty Name="ReturnedWhen" ColumnName="ReturnedWhen" />
+                <ScalarProperty Name="DueWhen" ColumnName="DueWhen" />
+                <ScalarProperty Name="CheckedOutWhen" ColumnName="CheckedOutWhen" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="BookLoanID" ColumnName="BookLoanID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Dewey">
             <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Dewey">
               <MappingFragment StoreEntitySet="Dewey">
-                <ScalarProperty Name="dewey_name" ColumnName="dewey_name" />
-                <ScalarProperty Name="dewey_number" ColumnName="dewey_number" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DeweyName" ColumnName="DeweyName" />
+                <ScalarProperty Name="DeweyNumber" ColumnName="DeweyNumber" />
+                <ScalarProperty Name="DeweyID" ColumnName="DeweyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Genres">
-            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Genres">
-              <MappingFragment StoreEntitySet="Genres">
-                <ScalarProperty Name="genre" ColumnName="genre" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Genre">
+            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -334,16 +331,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Students">
-              <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="student_email" ColumnName="student_email" />
-                <ScalarProperty Name="issued_id" ColumnName="issued_id" />
-                <ScalarProperty Name="fines" ColumnName="fines" />
-                <ScalarProperty Name="grade" ColumnName="grade" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="OpenSchoolLibraryDBModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="IssuedID" ColumnName="IssuedID" />
+                <ScalarProperty Name="Fines" ColumnName="Fines" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
