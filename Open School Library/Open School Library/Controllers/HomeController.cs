@@ -10,7 +10,8 @@ namespace Open_School_Library.Controllers
     {
         public ActionResult Index()
         {
-            //Open_School_Library.Helpers.SeedExistingDatabase.seedBookTable();
+            //Open_School_Library.Helpers.SeedExistingDatabase.seedDeweyTable();
+
             return View();
         }
 
