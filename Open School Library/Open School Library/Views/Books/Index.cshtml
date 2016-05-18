@@ -58,9 +58,9 @@
             @Html.DisplayFor(modelItem => item.genre)
         </td>
         <td>
-            @if (item.first_name != null)
+            @if (item.availability != null)
             {
-                @Html.DisplayFor(modelItem => item.first_name)
+                <text> Checked Out </text>
             }
             else
             {

@@ -19,8 +19,6 @@ namespace Open_School_Library.Controllers
         {
             IEnumerable<BookListViewModel> model =
             db.Book
-            //.Include(b => b.Dewey_Relation)
-            //.Include(b => b.Genres_Relation)
             .OrderByDescending(r => r.Title)
             .Where(r => searchTerm == null || r.Title.StartsWith(searchTerm))
             .Take(10)
@@ -28,31 +26,16 @@ namespace Open_School_Library.Controllers
             {
                 BookID = r.BookID,
                 title = r.Title,
-                subtitle = r.Subtitle,
                 author = r.Author,
-                genre = r.Genre1.GenreName,
                 isbn = r.ISBN,
-
-                //TODO: Figureout best way to display Dewey.
-                //We only need one reference here.
-                //Dewey = r.Dewey,
-                //DeweyDecimalNumber = r.DeweyTable.DeweyDecimalNumber,
                 dewey_name = r.Dewey1.DeweyName,
-                first_name = r.BookLoan.FirstOrDefault(w => w.ReturnedWhen == null).Student.FirstName
-                //StudentName = r.book_loans1.StudentsTable.FirstName,
-                //StudentName - r.book_loans_Relation.
-                //CheckedOutWhen = r.book_loans1.CheckedOutAt,
-                //DueBackWhen = r.book_loans1.DueAt,
-                //ReturnedWhen = r.book_loans1.ReturnedAt
-                //LoanedTo = r.StudentsTable.FirstName,
-                //CheckedOutWhen = r.CheckedOutWhen,
-                //DueBackWhen = r.DueBackWhen,
-                //ReturnedWhen = r.ReturnedWhen
+                genre = r.Genre1.GenreName,                
+                availability = r.BookLoan.FirstOrDefault(w => w.ReturnedWhen == null)
             });
-            
+
             return View(model);
 
-            }
+        }
 
         // GET: Books/Details/5
         public ActionResult Details(int? id)
