@@ -213,6 +213,7 @@
     <Compile Include="Models\Book.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookDetailsViewModel.cs" />
     <Compile Include="Models\BookListViewModel.cs" />
     <Compile Include="Models\BookLoan.cs">
       <DependentUpon>OSLModel.tt</DependentUpon>

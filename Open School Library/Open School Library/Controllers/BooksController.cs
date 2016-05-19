@@ -44,11 +44,31 @@ namespace Open_School_Library.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Book.Find(id);
+
+            //Book book = db.Book.Find(id);
+
+            var book = new BookDetailsViewModel()
+            {
+                bookID = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.BookID,
+                title = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.Title,
+                subtitle = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.Subtitle,
+                author = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.Author,
+                genre = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.Genre1.GenreName,
+                isbn = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.ISBN,
+                dewey_name = db.Book.Where(x => x.BookID == id).FirstOrDefault()?.Dewey1.DeweyName,
+
+                availability = db.BookLoan.Where(r => r.BookID == id && r.ReturnedWhen == null).FirstOrDefault(),
+                studentFirstName = db.BookLoan.Where(r => r.BookID == id && r.ReturnedWhen == null).FirstOrDefault()?.Student.FirstName,
+                studentLastName = db.BookLoan.Where(r => r.BookID == id && r.ReturnedWhen == null).FirstOrDefault()?.Student.LastName,
+                checkedOutWhen = db.BookLoan.Where(r => r.BookID == id && r.ReturnedWhen == null).FirstOrDefault()?.CheckedOutWhen,
+                dueWhen = db.BookLoan.Where(r => r.BookID == id && r.ReturnedWhen == null).FirstOrDefault()?.DueWhen
+            };
+
             if (book == null)
             {
                 return HttpNotFound();
             }
+
             return View(book);
         }
 

@@ -1,4 +1,4 @@
-﻿@model Open_School_Library.Models.Book
+﻿@model Open_School_Library.Models.BookDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -15,7 +15,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.title)
         </dd>
 
         <dt>
@@ -23,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Subtitle)
+            @Html.DisplayFor(model => model.subtitle)
         </dd>
 
         <dt>
@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.DisplayFor(model => model.author)
         </dd>
 
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ISBN)
+            @Html.DisplayFor(model => model.isbn)
         </dd>
 
         <dt>
@@ -47,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Dewey1.DeweyName)
+            @Html.DisplayFor(model => model.dewey_name)
         </dd>
 
         <dt>
@@ -55,12 +55,52 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Genre1.GenreName)
+            @Html.DisplayFor(model => model.genre)
+        </dd>
+
+        <dt>
+            Availability
+        </dt>
+
+        <dd>
+            @if(Model.availability != null)
+            {
+                <text> Checked Out </text>
+            }
+            else
+            {
+                <text> Available </text>
+}
+        </dd>
+
+        <dt>
+            Student Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.studentFirstName) @Html.DisplayFor(model => model.studentLastName)
+        </dd>
+
+        <dt>
+            Checked Out
+        </dt>
+
+        <dd>
+           
+            @Html.DisplayFor(model => model.checkedOutWhen)
+        </dd>
+
+        <dt>
+            Due Back
+        </dt>
+            
+        <dd>
+            @Html.DisplayFor(model => model.dueWhen)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
